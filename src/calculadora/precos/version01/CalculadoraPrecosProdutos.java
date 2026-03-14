@@ -6,13 +6,11 @@ import java.util.Locale;
 
 public class CalculadoraPrecosProdutos {
     public static void main(String[] args) {
-        // Configuramos o Scanner para aceitar PONTO como separador decimal (ex: 10.5)
         Scanner sc = new Scanner(System.in).useLocale(Locale.US);
 
         double porcentagemBruta = 0, porcentagemPerda = 0;
         int opcao = 0;
 
-        // 1. Loop para garantir que a CATEGORIA seja válida
         while (true) {
             try {
                 System.out.println("\n--- MENU DE CATEGORIAS ---");
@@ -22,7 +20,7 @@ public class CalculadoraPrecosProdutos {
                 opcao = sc.nextInt();
 
                 if (opcao >= 1 && opcao <= 8) {
-                    break; // Sai do loop do menu
+                    break;
                 }
                 System.err.println("Erro: Categoria inexistente! Escolha entre 1 e 8.");
             } catch (InputMismatchException e) {
@@ -31,7 +29,6 @@ public class CalculadoraPrecosProdutos {
             }
         }
 
-        // 2. Switch Case usando nosso método "mágico" de validação
         switch (opcao) {
             case 1:
                 porcentagemBruta = lerValorValidado(sc, 10, 15, "porcentagem bruta");
@@ -64,7 +61,6 @@ public class CalculadoraPrecosProdutos {
                 break;
         }
 
-        // 3. Resultado Final
         System.out.println("\n================================");
         System.out.println("DADOS COLETADOS COM SUCESSO!");
         System.out.printf("Categoria: %d\n", opcao);
@@ -76,10 +72,6 @@ public class CalculadoraPrecosProdutos {
         sc.close();
     }
 
-    /**
-     * MÉTODO PROFISSIONAL DE VALIDAÇÃO
-     * Este método lida com intervalos numéricos e erros de digitação (letras).
-     */
     public static double lerValorValidado(Scanner sc, double min, double max, String nomeCampo) {
         double valor;
         while (true) {
@@ -88,13 +80,13 @@ public class CalculadoraPrecosProdutos {
                 valor = sc.nextDouble();
 
                 if (valor >= min && valor <= max) {
-                    return valor; // Única saída possível do loop e do método
+                    return valor;
                 }
                 System.err.printf("Valor inválido! O campo '%s' exige entre %.1f e %.1f.\n", nomeCampo, min, max);
 
             } catch (InputMismatchException e) {
                 System.err.println("Erro de entrada: Você digitou um texto. Use números (Ex: 10.5).");
-                sc.next(); // Limpa o buffer para a próxima tentativa
+                sc.next();
             }
         }
     }
