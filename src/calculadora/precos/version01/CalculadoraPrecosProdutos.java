@@ -67,7 +67,6 @@ public class CalculadoraPrecosProdutos {
         System.out.printf("Porcentagem Bruta: %.2f%%\n", porcentagemBruta);
         System.out.printf("Margem de Perda: %.2f%%\n", porcentagemPerda);
         System.out.println("================================");
-        System.out.println("Pedro lindo");
 
         sc.close();
     }
